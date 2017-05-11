@@ -1,16 +1,39 @@
-<h1>Burgers!</h1>
-{{#each burger}}
-	<p>Id: {{this.id}}</p>
-	<p>Burger: {{this.burger_name}}</p>
-	<form action="/{{this.id}}?_method=DELETE" method="POST">
-		<input type="hidden" name="id" value="{{this.id}}">
-		<button type="submit">Devour</button>
-	</form>
-{{/each}}
+<div class='row'>
+	<div class='col-sm-6'>
+	{{#each burger}}
+		<div id='burgerName'>
+			<p>Burger {{this.id}}. <br>{{this.burger_name}}</p>
+			<form action="/{{this.id}}?_method=DELETE" method="POST">
+				<div class='form-group'>
+					<input type="hidden" name="id" value="{{this.id}}">
+					<button type="submit btn" id='devourBtn'>Devour</button>
+				</div>
+			</form>
+		</div>
+	{{/each}}
+	</div>
+	
+	<div class='col-sm-6'>
+		<div class='panel panel-default'>
+			<div class='panel-header'>
+				<h2>Burger Graveyard</h2>
+			</div>
+			<div class='panel-body'>
+				{{#each devoured}}
+					<p id='burgerName'>Burger {{this.id}}. {{this.burger_name}}</p>
+				{{/each}}
+			</div>
+		</div>
+	</div>
+<div>
 
-<h2>Add a New Burger!</h2>
+<div class='row'>
+	<div class='col-sm-12'>
+		<h2>Add a New Burger!</h2>
 
-<form action="/" method="POST">
-	<input type="text" name="burger">
-	<button type="submit">Create Burger!</button>
-</form>
+		<form action="/" method="POST">
+			<input type="text" name="burger">
+			<button type="submit">Create Burger!</button>
+		</form>
+	</div>
+</div>
