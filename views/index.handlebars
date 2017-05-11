@@ -1,0 +1,16 @@
+<h1>Burgers!</h1>
+{{#each burger}}
+	<p>Id: {{this.id}}</p>
+	<p>Burger: {{this.burger_name}}</p>
+	<form action="/{{this.id}}?_method=DELETE" method="POST">
+		<input type="hidden" name="id" value="{{this.id}}">
+		<button type="submit">Devour</button>
+	</form>
+{{/each}}
+
+<h2>Add a New Burger!</h2>
+
+<form action="/" method="POST">
+	<input type="text" name="burger">
+	<button type="submit">Create Burger!</button>
+</form>
