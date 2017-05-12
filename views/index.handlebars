@@ -1,15 +1,17 @@
 <div class='row'>
 	<div class='col-sm-6'>
 	{{#each burger}}
-		<div id='burgerName'>
-			<p>Burger {{this.id}}. <br>{{this.burger_name}}</p>
-			<form action="/{{this.id}}?_method=DELETE" method="POST">
-				<div class='form-group'>
-					<input type="hidden" name="id" value="{{this.id}}">
-					<button type="submit btn" id='devourBtn'>Devour</button>
-				</div>
-			</form>
-		</div>
+		{{#unless this.devoured}}
+			<div id='burgerName'>
+				<p>Burger {{this.id}}. <br>{{this.burger_name}}</p>
+				<form action="/{{this.id}}?_method=PUT" method="POST">
+					<div class='form-group'>
+						<input type="hidden" name="id" value="{{this.id}}">
+						<button type="submit btn" id='devourBtn'>Devour</button>
+					</div>
+				</form>
+			</div>
+		{{/unless}}
 	{{/each}}
 	</div>
 	
@@ -19,8 +21,10 @@
 				<h2>Burger Graveyard</h2>
 			</div>
 			<div class='panel-body'>
-				{{#each devoured}}
-					<p id='burgerName'>Burger {{this.id}}. {{this.burger_name}}</p>
+				{{#each burger}}
+					{{#if this.devoured}}
+						<p id='burgerName'>Burger {{this.id}}. {{this.burger_name}}</p>
+					{{/if}}
 				{{/each}}
 			</div>
 		</div>

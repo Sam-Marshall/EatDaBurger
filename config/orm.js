@@ -15,8 +15,14 @@ var orm = {
             cb(data);
         });
     },
-    updateOne: function() {
-
+    updateOne: function(table, col, newVal, id, idNum, cb) {
+        var queryString = 'UPDATE ' + table;
+        queryString += ' SET ' + col.toString() + ' = ' + newVal;
+        queryString += ' WHERE ' + id + ' = ' + idNum;
+        connection.query(queryString, function(err, data) {
+            if (err) throw err;
+            cb(data);
+        });
     }
 }
 
