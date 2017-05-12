@@ -1,43 +1,56 @@
 <div class='row'>
-	<div class='col-sm-6'>
-	{{#each burger}}
-		{{#unless this.devoured}}
-			<div id='burgerName'>
-				<p>Burger {{this.id}}. <br>{{this.burger_name}}</p>
-				<form action="/{{this.id}}?_method=PUT" method="POST">
-					<div class='form-group'>
-						<input type="hidden" name="id" value="{{this.id}}">
-						<button type="submit btn" id='devourBtn'>Devour</button>
-					</div>
+	<div class='col-sm-12'>
+		<div id='newBurger'>
+			<div id='addInterface'>
+				<h2>Add a New Burger!</h2>
+
+				<form action="/" method="POST">
+					<input type="text" name="burger" id="burgerInput">
+					<button type="submit" id="newBurgerBtn" class="btn btn-lg">Create</button>
 				</form>
 			</div>
-		{{/unless}}
-	{{/each}}
+		</div>
+	</div>
+</div>
+
+<div class='row'>
+	<div class='col-sm-6'>
+		<div id='freshBurgers' class='panel'>
+			
+			<div class='panel-header'>
+				<h2 id='eatenTitle'>Burgers To Eat</h2>
+			</div>
+			
+			<div class='panel-body'>
+				{{#each burger}}
+					{{#unless this.devoured}}
+						<div id='burgerName'>
+							<p>{{this.id}}. {{this.burger_name}}</p>
+							<form action="/{{this.id}}?_method=PUT" method="POST">
+								<div class='form-group'>
+									<input type="hidden" name="id" value="{{this.id}}">
+									<button type="submit btn" id='devourBtn'>Devour</button>
+								</div>
+							</form>
+						</div>
+					{{/unless}}
+				{{/each}}
+			</div>
+		</div>
 	</div>
 	
 	<div class='col-sm-6'>
-		<div class='panel panel-default'>
+		<div id='eatenBurgers' class='panel'>
 			<div class='panel-header'>
-				<h2>Burger Graveyard</h2>
+				<h2 id='eatenTitle'>Burger Graveyard</h2>
 			</div>
 			<div class='panel-body'>
 				{{#each burger}}
 					{{#if this.devoured}}
-						<p id='burgerName'>Burger {{this.id}}. {{this.burger_name}}</p>
+						<p id='burgerName'>{{this.id}}. {{this.burger_name}}</p>
 					{{/if}}
 				{{/each}}
 			</div>
 		</div>
 	</div>
 <div>
-
-<div class='row'>
-	<div class='col-sm-12'>
-		<h2>Add a New Burger!</h2>
-
-		<form action="/" method="POST">
-			<input type="text" name="burger">
-			<button type="submit">Create Burger!</button>
-		</form>
-	</div>
-</div>
